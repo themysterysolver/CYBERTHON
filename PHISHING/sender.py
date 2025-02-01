@@ -1,6 +1,10 @@
 import email
 import csv
 
+import Levenshtein
+from fuzzywuzzy import process
+
+
 #sender with legitimate email----------------------------------------------
 def trusted(sender_domain):
     with open("trusted_domains.txt", "w", encoding="utf-8") as output:
@@ -81,3 +85,88 @@ def display():
         return False
 dis=display()
 print(dis)
+#mispelling in domain--------------------------------------------------
+def load_trusted_domains(file_path="trusted_domains.txt"):
+    """
+    Load the trusted domains from the text file into a list.
+    """
+    with open(file_path, "r", encoding="utf-8") as file:
+        trusted_domains = [line.strip() for line in file]
+    return trusted_domains
+
+def detect_typosquatting_levenshtein(sender_domain, trusted_domains, threshold=2):
+    """
+    Check if the sender's domain has slight misspellings using Levenshtein distance.
+    """
+    Flag1=False
+    for trusted in trusted_domains:
+        distance = Levenshtein.distance(sender_domain, trusted)
+        if distance <= threshold:
+            flag1=True
+    
+    return flag1
+
+def fuzzy_detect(sender_domain, trusted_domains, threshold=85):
+    """
+    Check if the sender's domain is similar to any trusted domain using fuzzy matching.
+    """
+    match, score = process.extractOne(sender_domain, trusted_domains)
+    Flag2=False
+    if score >= threshold:
+        Flag2=True
+    
+    return Flag2
+
+def combined_typosquatting_check(sender_domain, trusted_domains, levenshtein_threshold=2, fuzzy_threshold=85):
+    """
+    Check for typosquatting using both Levenshtein distance and fuzzy matching.
+    """
+    # Apply Levenshtein Distance Check
+    flag1=False
+    levenshtein_result = detect_typosquatting_levenshtein(sender_domain, trusted_domains, levenshtein_threshold)
+    if flag1:
+        return False
+
+    # Apply Fuzzy Matching Check
+    fuzzy_result = fuzzy_detect(sender_domain, trusted_domains, fuzzy_threshold)
+    return fuzzy_result
+
+# Example usage
+trusted_domains = load_trusted_domains("trusted_domains.txt")  # Load domains from the text file
+
+sender_domain = "microsoftt.com"  # Example suspicious sender domain
+result_typo = False==combined_typosquatting_check(sender_domain, trusted_domains)
+print("typo:{}".format(result_typo)) 
+#spf-------------------------------------------------
+import dns.resolver
+def check_spf(domain):
+    try:
+        # Query the domain's TXT records
+        result = dns.resolver.resolve(domain, 'TXT')
+        
+        # Iterate through all TXT records
+        for txt_record in result:
+            # Check if the record starts with 'v=spf1' (case insensitive)
+            if txt_record.to_text().lower().startswith('"v=spf1'):
+                return True
+        
+        # If no SPF record is found
+        return False
+    
+    except dns.resolver.NoAnswer:
+        return "No TXT records found for the domain."
+    
+    except dns.resolver.NXDOMAIN:
+        return "The domain does not exist."
+    
+    except dns.resolver.Timeout:
+        return "DNS query timed out."
+    
+    except Exception as e:
+        return f"Error checking SPF: {e}"
+
+# Example usage
+domain = "microsoft.com"  # Example domain to check
+print(check_spf(domain))
+#
+
