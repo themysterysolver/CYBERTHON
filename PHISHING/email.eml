@@ -1,0 +1,202 @@
+Delivered-To: arjunprabhakar1910@gmail.com
+Received: by 2002:a05:7208:238e:b0:99:1dea:c94f with SMTP id m14csp1323721rbf;
+        Fri, 31 Jan 2025 21:00:09 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGZv34v8fMD6VGm/obNAKv2O1KJNgs1bk0DSlxR6R3qR/wInJFAJ1bFhKYehX2BDfaIMl6w
+X-Received: by 2002:a05:620a:3908:b0:7b6:ebb8:14e8 with SMTP id af79cd13be357-7bffcd062ddmr2009122885a.29.1738386009558;
+        Fri, 31 Jan 2025 21:00:09 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738386009; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ICRPZl+YcPZv8rMXHzTlvre9GOzI5rlHd9Qfjr0Q7NX1G7yceIV7sNXWzgjRXPnhNM
+         LAZnUCfHzLIhmEMWLlpRORV0FTM1chGkv9/jxTV9YV0/T/KGT4Ku4aB1IyEjRHh5EGYk
+         j2sU8j2JON+zmedMSfXPa9IiHJMcdMaxs6cNauEpKbrPakFCaKKJ1wV0t2FPvEM8Gpw2
+         qRG1TXCCzeme0qUSxDKpAcJij3myT2gB8J04ZK5U6pP4n53FN8rUhxIiwDC7E0isP9bs
+         jVevE+8cpl04JIhd4Y/vOm1a3HB2nl7qupQyBFwv3z/GigVARLiHUSrKoKVCHpvTzoq2
+         YHIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=list-unsubscribe-post:feedback-id:reply-to:list-unsubscribe
+         :content-transfer-encoding:mime-version:message-id:subject:from:to
+         :date:dkim-signature:dkim-signature;
+        bh=RjKDk5zyy5pofPTqcKe9xNbDpMZAJrqDGcca3Z/sy04=;
+        fh=GHxaT1wptYutW/hsbWKqExbOL1zvi9PFW7J4rT+k31Q=;
+        b=AuznX4sN7WQkIH2fbYjx8bAKWjlVczVdB85UPBw92y1wJzWQzwQ5iamDUc01GaqBpv
+         DOkFqymDXBM2Y46DSc7eEd+jS6G73MC/BTnylhmhz/yVNSgc0GjxtKbl+UGTH5B8TqB+
+         F7y3Xh2h7NsEyFEomvhLYzm4i1Hz9Or+iVnx6sxJhFV1cSC+18a3OdWc47yNsyh+JsCU
+         RVe/it447CaMzE49l2kR588ofre9kO3RhXTA6NdtTM6+UFyTvKu93npNMS0Br1gd5A6J
+         Ii6eKrWQ14iqYPF27EHA+G6JbeNJ4xWHflQ7T3qOsj8EI2MUYjgAHLKm7xAkwGpHZC7K
+         FT/Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@updates.internshala.com header.s=fnc header.b=azlK+RCW;
+       dkim=pass header.i=@env.etransmail.com header.s=fnc header.b=IhGi2C6m;
+       spf=pass (google.com: domain of 17383482020870974-178803-1-gmail.com@trigger.updates.internshala.com designates 103.52.180.143 as permitted sender) smtp.mailfrom=17383482020870974-178803-1-gmail.com@trigger.updates.internshala.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=internshala.com
+Return-Path: <17383482020870974-178803-1-gmail.com@trigger.updates.internshala.com>
+Received: from MTA3-143.ncdelivery04.com (MTA3-143.ncdelivery04.com. [103.52.180.143])
+        by mx.google.com with ESMTPS id af79cd13be357-7c00a8d6c1csi518077385a.140.2025.01.31.21.00.09
+        for <arjunprabhakar1910@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Jan 2025 21:00:09 -0800 (PST)
+Received-SPF: pass (google.com: domain of 17383482020870974-178803-1-gmail.com@trigger.updates.internshala.com designates 103.52.180.143 as permitted sender) client-ip=103.52.180.143;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@updates.internshala.com header.s=fnc header.b=azlK+RCW;
+       dkim=pass header.i=@env.etransmail.com header.s=fnc header.b=IhGi2C6m;
+       spf=pass (google.com: domain of 17383482020870974-178803-1-gmail.com@trigger.updates.internshala.com designates 103.52.180.143 as permitted sender) smtp.mailfrom=17383482020870974-178803-1-gmail.com@trigger.updates.internshala.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=internshala.com
+DKIM-Signature: a=rsa-sha256; bh=RjKDk5zyy5pofPTqcKe9xNbDpMZAJrqDGcca3Z/sy04=;
+ c=relaxed/relaxed; d=updates.internshala.com;
+ h=DKIM-Signature:Date:To:From:Subject:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:List-Unsubscribe:Reply-To:Feedback-Id:X-Dkim-Options:X-Delivery:X-Job:X-Fncid:X-Abuse-Reports-To:X-Injtime:X-Traffic-Type:X-Mta-Source:X-Mailer:List-Unsubscribe-Post;
+ s=fnc; t=1738386006; v=1;
+ b=azlK+RCWX6z9zZCptXolWCS8nWaCTxzhxtuOFZMWRkvvAFrtVISKphCh+UgAhXZVADNwjgQf
+ ymlMh3jO25KmFNIG3LJ8HDHJRteS4KcEG803D7W1eLRN6s/e8cK48ZfKGM9lrWu3/wALAv1yqOD
+ UOx/uY6sN1oHjIEgCBt5Fgs4=
+DKIM-Signature: a=rsa-sha256; bh=RjKDk5zyy5pofPTqcKe9xNbDpMZAJrqDGcca3Z/sy04=;
+ c=relaxed/relaxed; d=env.etransmail.com;
+ h=Date:To:From:Subject:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:List-Unsubscribe:Reply-To:Feedback-Id:X-Dkim-Options:X-Delivery:X-Job:X-Fncid:X-Abuse-Reports-To:X-Injtime:X-Traffic-Type:X-Mta-Source:X-Mailer:List-Unsubscribe-Post;
+ s=fnc; t=1738386006; v=1;
+ b=IhGi2C6mzutA4+kJarpEf3ouA7+5fCxzG+xXuFRDLIJaesCOe0BQWIcbw0POtu/ELF2BweJ4
+ +BvPY7dLCK4HCgS5EeDGc+Pd2JsIvLDbuLW3+D9vq4AJvMP923TEPPMdZTdRfabpr5oGkObErLn
+ panOn3TP4hy03yQnF2Dq6RnU=
+Date: Sat, 1 Feb 2025 10:30:06 +0530
+To: arjunprabhakar1910@gmail.com
+From: =?UTF-8?B?SW50ZXJuc2hhbGE=?= <student@updates.internshala.com>
+Subject: =?UTF-8?B?Ui5QUkFCSEFLQVJBLCBpcyB0aGlzIHN0b3BwaW5nIHlvdT/wn5uR?=
+Message-Id: <pgqlbo17383482020870974@updates.internshala.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="_----------=_173838600625462800"
+Content-Transfer-Encoding: binary
+List-Unsubscribe: <https://unsub-api.netcorecloud.net/YHNMJN?id=178803=bEtRCQcNXQFQHUVBQxQQFBUVEEVFFkESGBgREERBQRUZF0EYEBVFEUNBRUFDFBAUFQVMAQRXUldaCQZRAVAEDFpWBFlTVwcBAVVXUVBSAgQHUVQBUQJWAQ0MAQkHAgdUCQIEDAZRBgkFV1NZVgcDVQNXVhlUAVIKCwwJAlRTUQ0OB1gPBEkNRRcRFltMG0VaRkBSSARGCBxWXUVTCxMEVlVYFFweWwBFTDgtLy5+fgtcUUwTVg==>, <mailto:17383482020870974-178803-fncunsub@usub.ftrans03.com?subject=Unsubscribe>
+Reply-To: no-reply-student@internshala.com
+Feedback-Id: 178803:202502:1:falconide
+X-Dkim-Options: s=fnc;d=updates.internshala.com
+X-Delivery: smt_trans|178803
+X-Job: smt_internshalacomcee20230602:178803:202502
+X-Fncid: 178803-17383482020870974-0
+X-Abuse-Reports-To: abuse@pepipost.com
+X-Injtime: 1738386006
+X-Traffic-Type: 178803-2
+X-Mta-Source: smt_internshalacomcee20230602_178803
+X-Mailer: NetcoreCloud Mailer
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+
+This is a multi-part message in MIME format.
+
+--_----------=_173838600625462800
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+         Hey R.PRABHAKARA, Are you hesitating to make your first applicatio=
+n , caught up in a whirlwind of worries and doubts? Here are a few concerns=
+ you might have, and why you shouldn't let them hold you back: 1. Feel unde=
+rqualified? =C2=A0Don't underestimate yourself! Many success stories on Int=
+ernshala started with students who felt underqualified. Remember, growth ha=
+ppens when you step out of your comfort zone. 2. Seeking Advice from Friend=
+s: While advice from friends can be helpful, remember that your journey is =
+unique. Trust your instincts and believe in your own abilities. 3. Independ=
+ent Skill Mastery: If you feel your skillset is lacking, Internshala offers=
+ online training programs to help you upskill and bridge any knowledge gaps=
+. Seize the opportunity to learn and grow. 4. Embrace the Adventure of Lear=
+ning: Rejections are part of the learning process. Embrace them, learn from=
+ them, and keep improving your profile. Remember, perfection is not a requi=
+rement: Even if your profile isn't flawless, don't hesitate to take that fi=
+rst step and make your first application. It=E2=80=99s often the first step=
+ that leads to great achievements. So, don't hold back! Apply now . =C2=A0 =
+Thanks, Team Internshala     Apply now             Internshala (Scholiverse=
+ Educare Pvt. Ltd.) 901 A/B, Iris Tech Park, Sohna Road, Sector - 48, Gurug=
+ram   Not keen on career commitments? Unsubscribe here to break up with us.=
+=20=20=20=20=20=20=20=20=
+=
+
+--_----------=_173838600625462800
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head> <title></title><=
+/head><body> <a href=3D"http://ncdelivery.updates.internshala.com/vtrack?sl=
+=3DdRp7S2BrTTJ0YR9XUlxWWVEXXUZJH0ZGBVVDUkYYCl5HUUIKR1BXDgAWU1xYHQ=3D=3D&ml=
+=3DBVIKSwcPTVAKBB9FAQ=3D=3D&ul=3DBVYMBAAOB1FFBB9YQ1JGW0gTWVZYUFhXEwUOBgV2BF=
+1SXVxKV1dbHgBKWkZbEURYBlpRWlFCAl0BAHFRXgQMXRoFV1pJCQZZAQVSFAAMARgJUQwHBQcFB=
+kwGABoHA1MCAwUBVAcIBlQdCQ=3D=3D&pp=3DT0RxZGp5ZDV2eSx+eHYRDxpDRQ=3D=3D&clien=
+tid=3D178801&fl=3DXBJMR0YCHk5QWxdcQ1ZAXVkNWRpTXl4ZC1tVRBpfDURWRl4XXFFGEU4=
+=3D&ext=3DdXRtX3NvdXJjZT1tYWlsJnV0bV9tZWRpdW09Zmlyc3RhcHBwdXNoZGF5MyZhbHA9W=
+0lTX0FVVE9MT0dJTl0=3D"><img src=3D"https://internshala.com/uploads/common/i=
+mage/604afd895cfdf1615527305.png " style=3D"width: 144px;display:block;marg=
+in: auto; " /> </a> <div style=3D"margin: 18px 6% 10px; "> <div style=3D"ov=
+erflow: auto; padding-bottom: 10px; text-align: left; "> <div dir=3D"ltr ">=
+ <div dir=3D"ltr "> <div style=3D"text-align: justify; "> <p>Hey R.PRABHAKA=
+RA,</p> <p>Are you <strong>hesitating to make your first application</stron=
+g>, caught up in a whirlwind of worries and doubts? Here are a few concerns=
+ you might have, and why you shouldn't let them hold you back:</p> <p><stro=
+ng>1. Feel underqualified?</strong>&nbsp;Don't underestimate yourself! Many=
+ success stories on Internshala started with students who felt underqualifi=
+ed. Remember, growth happens when you step out of your comfort zone. <br />=
+<strong>2. Seeking Advice from Friends:</strong> While advice from friends =
+can be helpful, remember that your journey is unique. Trust your instincts =
+and believe in your own abilities. <br /><strong>3. Independent Skill Maste=
+ry:</strong> If you feel your skillset is lacking, Internshala offers onlin=
+e training programs to help you upskill and bridge any knowledge gaps. Seiz=
+e the opportunity to learn and grow. <br /><strong>4. Embrace the Adventure=
+ of Learning:</strong> Rejections are part of the learning process. Embrace=
+ them, learn from them, and keep improving your profile.</p> <p>Remember, p=
+erfection is not a requirement: Even if your profile isn't flawless, don't =
+hesitate to take that first step and make your first application. It&rsquo;=
+s often the first step that leads to great achievements. So, don't hold bac=
+k! <a href=3D"http://ncdelivery.updates.internshala.com/vtrack?sl=3DdRp7S2B=
+rTTJ0YR9XUlxWWVEXXUZJH0ZGBVVDUkYYCl5HUUIKR1BXDgAWU1xYHQ=3D=3D&ml=3DBVIKSwcP=
+TVAKBB9FAQ=3D=3D&ul=3DBVYMBAAOB1FFBB9YQ1JGW0gTWVZYUFhXEwUOBgV2BF1SXVxKV1dbH=
+gBKWkZbEURYBlpRWlFCAl0BAHFRXgQMXRoFV1pJCQZZAQVSFAAMARgJUQwHBQcFBkwGABoHA1MC=
+AwUBVAcIBlQdCQ=3D=3D&pp=3DT0RxZGp5ZDV2eSx+eHYRDxpDRQ=3D=3D&clientid=3D17880=
+1&fl=3DXBJMR0YCHk5QWxdcQ1ZAXVkNWRpTXl4ZC1tVRBpfDURWRl4XXFFGEU4=3D&ext=3DdXR=
+tX3NvdXJjZT1tYWlsJnV0bV9tZWRpdW09Zmlyc3RhcHBwdXNoZGF5MyZhbHA9W0lTX0FVVE9MT0=
+dJTl0=3D">Apply now</a>. <br />&nbsp;</p> </div>Thanks, <br />Team Internsh=
+ala <center> <tr> <td align=3D"center" style=3D"height:100%;vertical-align:=
+baseline;"> <p style=3D"margin:16px 24px 48px 24px;padding:8px 24px;display=
+:inline-block;border:0;border-radius:6px;background-color:#00A5Ec; font-fam=
+ily:Arial;font-size:16px;font-weight:700;line-height:32px;letter-spacing:0e=
+m;text-align:center;color:#FFFFFF;"> <a href=3D"http://ncdelivery.updates.i=
+nternshala.com/vtrack?sl=3DdRp7S2BrTTJ0YR9XUlxWWVEXXUZJH0ZGBVVDUkYYCl5HUUIK=
+R1BXDgAWU1xYHQ=3D=3D&ml=3DBVIKSwcPTVAKBB9FAQ=3D=3D&ul=3DBVYMBAAOB1FFBB9YQ1J=
+GW0gTWVZYUFhXEwUOBgV2BF1SXVxKV1dbHgBKWkZbEURYBlpRWlFCAl0BAHFRXgQMXRoFV1pJCQ=
+ZZAQVSFAAMARgJUQwHBQcFBkwGABoHA1MCAwUBVAcIBlQdCQ=3D=3D&pp=3DT0RxZGp5ZDV2eSx=
++eHYRDxpDRQ=3D=3D&clientid=3D178801&fl=3DXBJMR0YCHk5QWxdcQ1ZAXVkNWRpTXl4ZC1=
+tVRBpfDURWRl4XXFFGEU4=3D&ext=3DdXRtX3NvdXJjZT1tYWlsJnV0bV9tZWRpdW09Zmlyc3Rh=
+cHBwdXNoZGF5MyZhbHA9W0lTX0FVVE9MT0dJTl0=3D" style=3D"margin: 0 auto; paddin=
+g 0; display: block; text-decoration: none !important; text-align: center;"=
+ target=3D"_blank"><span style=3D"color:#ffffff;">Apply now</span> </a> </p=
+> </td> </tr> </center> <tr> <td style=3D"height:100%;vertical-align:baseli=
+ne;"> <a href=3D"http://ncdelivery.updates.internshala.com/vtrack?sl=3DdRp7=
+S2BrTTJ0YR9XUlxWWVEXXUZJH0ZGBVVDUkYYCl5HUUIKR1BXDgAWU1xYHQ=3D=3D&ml=3DBVIKS=
+wcPTVABBh9FAQ=3D=3D&ul=3DBVYMBAAOB1FFBB9YQ1JGW0gTWVZYUFhXEwUOBgV2BF1SXVxKV1=
+dbHgBKWkZbEURYBlpRWlFCAl0BAHFRXgQMXRoFV1pJCQZZAQVSFAAMARgJUQwHBQcFBkwGABoHA=
+1MCAwUBVAcIBlQdCQ=3D=3D&pp=3DT0RxZGp5ZDV2eSx+eHYRDxpDRQ=3D=3D&clientid=3D17=
+8801&fl=3DXBJMR0YCHk5NRwJQX1FdUktPUVpEVEFYElxWW1QYAF9eG0AIVVtTDwRWRB5UD1IUD=
+l1SHFdFUhZRXkVTVkgGXkEUS1JGFw=3D=3D&ext=3DdXRtX3NvdXJjZT1tYWlsJnV0bV9tZWRpd=
+W09YXV0b21hdGlvbl9tYWlsJmFscD1bSVNfQVVUT0xPR0lOXQ=3D=3D" style=3D"display: =
+block;text-decoration:none;" target=3D"_blank"><img alt=3D"" src=3D"https:/=
+/internshala.com/uploads/common/image/10jxaz2pyc3.png" style=3D"margin:0 au=
+to;padding:0;display:block;width:100%;" /> </a> <div style=3D"background: t=
+ransparent;text-align: center;padding: 12px 8px 12px;color: #666666;font-we=
+ight: normal;font-size: 11px;line-height: 18px; "> <div style=3D"text-align=
+: center;padding-bottom: 8px;margin-top:8px "> <p style=3D"line-height: 18p=
+x;font-size: 11px;font-weight: normal;color: #666666;margin: 0; "> Internsh=
+ala (Scholiverse Educare Pvt. Ltd.) <br />901 A/B, Iris Tech Park, Sohna Ro=
+ad, Sector - 48, Gurugram </p> </div> <em>Not keen on career commitments? <=
+a href=3D"http://ncdelivery.updates.internshala.com/vtrack?sl=3DdRptS2BrTTJ=
+0YR9XUlxWWVEXXUZJH0ZGBVVDUkYYCl5HUUIKR1BXDgAWU1xYHQ=3D=3D&ml=3DBVIKSwcPTVFF=
+SVM=3D&ul=3DBVYMBAAOB1FFBB9YQ1JGW0gTWVZYUFhXEwUOBgV2BF1SXVxKV1dbHgBKWkZbEUR=
+YBlpRWlFCAl0BAHFRXgQMXRoFV1pJCQZZAQVSFAAMARgJUQwHBQcFBkwGABoHA1MCAwUBVAcIBl=
+QdCQ=3D=3D&clientid=3D178801" style=3D"text-decoration: none; color: #008BD=
+C; " target=3D"_blank " xt=3D"SPONECLICKOPTOUT ">Unsubscribe</a> here to br=
+eak up with us.</em> </div> <grammarly-desktop-integration data-grammarly-s=
+hadow-root=3D"true "> </grammarly-desktop-integration> </div> </div> </div>=
+ </div> </div><img border=3D"0" src=3D"http://ncdelivery.updates.internshal=
+a.com/vtrack?sl=3DdRp3S2BrTTJ0YR9XUlxWWVEXXUZJH0ZGBVVDUkYYCl5HUUIKR1BXDgAWU=
+1xYHQ=3D=3D&ml=3DBVIKSwcPTVFFSVM=3D&ul=3DBVYMBAAOB1FFBB9YQ1JGW0gTWVZYUFhXEw=
+UOBgV2BF1SXVxKV1dbHgBKWkZbEURYBlpRWlFCAl0BAHFRXgQMXRoFV1pJCQZZAQVSFAAMARgJU=
+QwHBQcFBkwGABoHA1MCAwUBVAcIBlQdCQ=3D=3D&clientid=3D178801"></body></html>=
+=
+
+--_----------=_173838600625462800--
+
