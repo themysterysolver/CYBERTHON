@@ -9,7 +9,7 @@ from email import policy
 from email.parser import BytesParser
 
 #sender with legitimate email----------------------------------------------
-def trusted(sender_domain):
+def is_trusted(sender_domain):
     with open("trusted_domains.txt", "w", encoding="utf-8") as output:
         with open("majestic_million.csv", "r", encoding="utf-8") as file:
             reader = csv.reader(file)
@@ -43,10 +43,10 @@ if "<" in from_email and ">" in from_email:  # If format is "Name <email@domain.
 domain = from_email.split("@")[-1]
 print("Sender Domain:", domain)
 
-close_matches = trusted(domain)
+close_matches = is_trusted(domain)
 print(close_matches)
 #display---------------------------------------------------------------------------------------------------------------
-def display():
+def is_display():
     # Load the email from a .eml file
     with open("email.eml", "r", encoding="utf-8") as f:
         msg = email.message_from_file(f)
@@ -86,7 +86,7 @@ def display():
         return True
     else:
         return False
-dis=display()
+dis=is_display()
 print(dis)
 #mispelling in domain--------------------------------------------------
 def load_trusted_domains(file_path="trusted_domains.txt"):
@@ -120,25 +120,22 @@ def fuzzy_detect(sender_domain, trusted_domains, threshold=85):
     
     return Flag2
 
-def combined_typosquatting_check(sender_domain, trusted_domains, levenshtein_threshold=2, fuzzy_threshold=85):
+def is_combined_typosquatting_check(sender_domain, trusted_domains, levenshtein_threshold=2, fuzzy_threshold=85):
     """
     Check for typosquatting using both Levenshtein distance and fuzzy matching.
     """
     # Apply Levenshtein Distance Check
-    flag1=False
     levenshtein_result = detect_typosquatting_levenshtein(sender_domain, trusted_domains, levenshtein_threshold)
-    if flag1:
-        return False
 
     # Apply Fuzzy Matching Check
     fuzzy_result = fuzzy_detect(sender_domain, trusted_domains, fuzzy_threshold)
-    return fuzzy_result
+    return False==fuzzy_result or False==levenshtein_result
 
 # Example usage
 trusted_domains = load_trusted_domains("trusted_domains.txt")  # Load domains from the text file
 
 sender_domain = "microsoftt.com"  # Example suspicious sender domain
-result_typo = False==combined_typosquatting_check(sender_domain, trusted_domains)
+result_typo = is_combined_typosquatting_check(sender_domain, trusted_domains)
 print("typo:{}".format(result_typo)) 
 #spf-------------------------------------------------
 import dns.resolver
