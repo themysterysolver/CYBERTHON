@@ -23,9 +23,9 @@ def is_trusted(sender_domain):
 
     with open("trusted_domains.txt", "r", encoding="utf-8") as file:
         if any(sender_domain == line.strip() for line in file):
-            return True
+            return {"legitimate_website":True}
         else:
-            return False
+            return {"legitimate_website":False}
 
 
 # Open the .eml file
@@ -83,9 +83,9 @@ def is_display():
 
     # Example check
     if is_display_name_legit(display_name, email_address):
-        return True
+        return {"disply-match":True}
     else:
-        return False
+        return {"disply-match":False}
 dis=is_display()
 print(dis)
 #mispelling in domain--------------------------------------------------
@@ -129,7 +129,7 @@ def is_combined_typosquatting_check(sender_domain, trusted_domains, levenshtein_
 
     # Apply Fuzzy Matching Check
     fuzzy_result = fuzzy_detect(sender_domain, trusted_domains, fuzzy_threshold)
-    return False==fuzzy_result or False==levenshtein_result
+    return {"typosquatting":(False==fuzzy_result or False==levenshtein_result)}
 
 # Example usage
 trusted_domains = load_trusted_domains("trusted_domains.txt")  # Load domains from the text file
@@ -148,10 +148,10 @@ def check_spf(domain):
         for txt_record in result:
             # Check if the record starts with 'v=spf1' (case insensitive)
             if txt_record.to_text().lower().startswith('"v=spf1'):
-                return True
+                return {"spf":True}
         
         # If no SPF record is found
-        return False
+        return {"spf":False}
     
     except dns.resolver.NoAnswer:
         return "No TXT records found for the domain."
@@ -181,10 +181,10 @@ def check_dmarc(domain):
         for txt_record in result:
             # Check if the record starts with 'v=DMARC1' (case insensitive)
             if txt_record.to_text().lower().startswith('"v=dmarc1'):
-                return True
+                return {"dmarc":True}
         
         # If no DMARC record is found
-        return False
+        return {"dmarc":False}
     
     except dns.resolver.NoAnswer:
         return "No DMARC TXT records found for the domain."
