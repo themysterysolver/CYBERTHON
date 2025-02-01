@@ -1,37 +1,61 @@
-version: "3.8"
+
 services:
-  backend:
-    build:
-      context: ./backend
-    container_name: backend
+  nmap:
+    image: uzyexe/nmap
+    container_name: nmap_scanner
+    command: ["nmap", "-sV", "target-ip"]  # Replace "target-ip" with a dynamic input
+    networks:
+      - security_net
+
+  openvas:
+    image: mikesplain/openvas
+    container_name: openvas_scanner
+    ports:
+      - "9392:9392"  # OpenVAS Web UI
+    networks:
+      - security_net
+
+  metasploit:
+    image: metasploitframework/metasploit-framework
+    container_name: metasploit
+    tty: true
+    networks:
+      - security_net
+
+  postgres:
+    image: postgres
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: security_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - security_net
+
+  ai_model:
+    build: ./ai_model
+    container_name: ai_classifier
     ports:
       - "8000:8000"
     depends_on:
-      - database
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@database:5432/websec
+      - postgres
+    networks:
+      - security_net
 
   frontend:
-    build:
-      context: ./frontend
-    container_name: frontend
+    build: ./frontend
+    container_name: security_dashboard
     ports:
       - "3000:3000"
     depends_on:
-      - backend
+      - ai_model
+    networks:
+      - security_net
 
-  database:
-    image: postgres:15
-    container_name: database
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: websec
-    volumes:
-      - db_data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+networks:
+  security_net:
 
 volumes:
-  db_data:
+  pgdata:
