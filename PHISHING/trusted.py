@@ -1,27 +1,19 @@
 import csv
-import Levenshtein
-trusted_domains = set()
 
-with open("majestic_million.csv", "r", encoding="utf-8") as file:
-    reader = csv.reader(file)
-    next(reader)  # Skip header
-    for row in reader:
-        domain = row[2].strip()  # Column 2 contains the domain name
-        trusted_domains.add(domain)
-        
-def detect_typosquatting(sender_domain, trusted_domains, threshold=2):
-    """
-    Check if the sender's domain is similar to any trusted domain.
-    A small Levenshtein distance (1-2) means it's likely typosquatting.
-    """
-    for trusted in trusted_domains:
-        distance = Levenshtein.distance(sender_domain, trusted)
-        if distance <= threshold:  # Small edit distance means suspicious
-            return f"⚠️ Warning! {sender_domain} looks like {trusted} (distance: {distance})"
+# Save trusted domains to a text file instead of memory
+with open("trusted_domains.txt", "w", encoding="utf-8") as output:
+    with open("majestic_million.csv", "r", encoding="utf-8") as file:
+        reader = csv.reader(file)
+        next(reader)  # Skip header
+        for row in reader:
+            domain = row[2].strip()  # Column 2 contains the domain name
+            output.write(domain + "\n")
 
-    return "✅ No typosquatting detected."
-
-# Example: Check a suspicious domain
+print("✅ Trusted domains saved to trusted_domains.txt")
 sender_domain = "microsoftt.com"
-result = detect_typosquatting(sender_domain, trusted_domains)
-print(result)
+
+with open("trusted_domains.txt", "r", encoding="utf-8") as file:
+    if any(sender_domain == line.strip() for line in file):
+        print(f"✅ {sender_domain} is a legitimate domain!")
+    else:
+        print(f"⚠️ {sender_domain} is NOT in the Majestic list! Be cautious.")
